@@ -15,6 +15,10 @@ namespace TaskManager.Models
         public DateTime DueDate { get; set; }
         public string Priority { get; set; } // Low, Medium, High
         public Status Status { get; set; } // Pending, In Progress, Completed
+        public int UsrId{get;set;}
+        public int CategId { get; set; }
 
+        public virtual User Usr { get; set; }
+        public virtual Category Categ { get; set; }
     }
 }
