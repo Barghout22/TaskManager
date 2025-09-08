@@ -116,6 +116,7 @@
             button2.TabIndex = 7;
             button2.Text = "Cancel";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // textBox1
             // 
@@ -132,6 +133,7 @@
             richTextBox1.Size = new Size(211, 146);
             richTextBox1.TabIndex = 9;
             richTextBox1.Text = "";
+            richTextBox1.TextChanged += richTextBox1_TextChanged;
             // 
             // dateTimePicker1
             // 
@@ -156,6 +158,7 @@
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(200, 23);
             comboBox2.TabIndex = 12;
+            comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             // 
             // comboBox3
             // 
