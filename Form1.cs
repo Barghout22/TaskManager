@@ -4,7 +4,7 @@ namespace TaskManager
 {
     public partial class Form1 : Form
     {
-        new CustomDialogForm AddForm = new CustomDialogForm();
+        new CustomDialogForm AddForm;
         TaskManagerContext context = new TaskManagerContext();
         new AddUserForm UserForm = new AddUserForm();
         new AddCategoryForm CatForm = new AddCategoryForm();
@@ -26,7 +26,7 @@ namespace TaskManager
                 }
                 comboBox1.Text = users[0].Email;
                 comboBox1.SelectedText = users[0].Email;
-                MessageBox.Show(comboBox1.SelectedText);
+               
             }
         }
 
@@ -41,6 +41,8 @@ namespace TaskManager
             else if (catCount == 0) MessageBox.Show("You must add some categories before you can add tasks");
             else
             {
+                var currentUser = context.Users.FirstOrDefault(user => user.Email == comboBox1.Text);
+                AddForm = new CustomDialogForm(currentUser);
                 AddForm.ShowDialog();
                 if (AddForm.DialogResult == DialogResult.Cancel) AddForm.Close();
             }
@@ -98,7 +100,6 @@ namespace TaskManager
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MessageBox.Show(comboBox1.SelectedItem.ToString());
         }
 
         private void button2_Click(object sender, EventArgs e)

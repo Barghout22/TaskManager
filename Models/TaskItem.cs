@@ -14,7 +14,7 @@ namespace TaskManager.Models
         public string Description { get; set; }
         public DateTime setDate { get; set; }
         public DateTime DueDate { get; set; }
-        public DateTime CompletionTime { get; set; }
+        public DateTime? CompletionTime { get; set; }
         public string Priority { get; set; } // Low, Medium, High
         public Status Status { get; set; } // Pending, In Progress, Completed
         public int UsrId{get;set;}
