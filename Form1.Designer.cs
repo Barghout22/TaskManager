@@ -39,22 +39,31 @@
             comboBox1 = new ComboBox();
             button3 = new Button();
             radioButton5 = new RadioButton();
+            textBox1 = new TextBox();
+            button4 = new Button();
+            button5 = new Button();
+            button6 = new Button();
+            button7 = new Button();
+            label2 = new Label();
+            button8 = new Button();
+            button9 = new Button();
+            button10 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(29, 89);
+            dataGridView1.Location = new Point(28, 157);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(590, 313);
+            dataGridView1.Size = new Size(612, 372);
             dataGridView1.TabIndex = 0;
             // 
             // button1
             // 
-            button1.Location = new Point(502, 37);
+            button1.Location = new Point(665, 284);
             button1.Name = "button1";
-            button1.Size = new Size(117, 23);
+            button1.Size = new Size(106, 43);
             button1.TabIndex = 1;
             button1.Text = "Add Task";
             button1.UseVisualStyleBackColor = true;
@@ -64,7 +73,7 @@
             // 
             radioButton1.AutoSize = true;
             radioButton1.Checked = true;
-            radioButton1.Location = new Point(52, 41);
+            radioButton1.Location = new Point(29, 41);
             radioButton1.Name = "radioButton1";
             radioButton1.Size = new Size(68, 19);
             radioButton1.TabIndex = 2;
@@ -76,7 +85,7 @@
             // radioButton2
             // 
             radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(126, 41);
+            radioButton2.Location = new Point(120, 41);
             radioButton2.Name = "radioButton2";
             radioButton2.Size = new Size(69, 19);
             radioButton2.TabIndex = 3;
@@ -87,7 +96,7 @@
             // radioButton3
             // 
             radioButton3.AutoSize = true;
-            radioButton3.Location = new Point(201, 41);
+            radioButton3.Location = new Point(227, 41);
             radioButton3.Name = "radioButton3";
             radioButton3.Size = new Size(83, 19);
             radioButton3.TabIndex = 4;
@@ -98,7 +107,7 @@
             // radioButton4
             // 
             radioButton4.AutoSize = true;
-            radioButton4.Location = new Point(290, 41);
+            radioButton4.Location = new Point(348, 41);
             radioButton4.Name = "radioButton4";
             radioButton4.Size = new Size(115, 19);
             radioButton4.TabIndex = 5;
@@ -148,7 +157,7 @@
             // radioButton5
             // 
             radioButton5.AutoSize = true;
-            radioButton5.Location = new Point(402, 41);
+            radioButton5.Location = new Point(506, 41);
             radioButton5.Name = "radioButton5";
             radioButton5.Size = new Size(99, 19);
             radioButton5.TabIndex = 11;
@@ -157,11 +166,103 @@
             radioButton5.UseVisualStyleBackColor = true;
             radioButton5.CheckedChanged += radioButton5_CheckedChanged;
             // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(29, 89);
+            textBox1.Name = "textBox1";
+            textBox1.PlaceholderText = "search tasks by name/description";
+            textBox1.Size = new Size(458, 23);
+            textBox1.TabIndex = 12;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(516, 89);
+            button4.Name = "button4";
+            button4.Size = new Size(89, 23);
+            button4.TabIndex = 13;
+            button4.Text = "Search";
+            button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            button5.Enabled = false;
+            button5.Location = new Point(193, 557);
+            button5.Name = "button5";
+            button5.Size = new Size(117, 48);
+            button5.TabIndex = 15;
+            button5.Text = "Previous";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
+            // button6
+            // 
+            button6.Location = new Point(348, 557);
+            button6.Name = "button6";
+            button6.Size = new Size(130, 48);
+            button6.TabIndex = 16;
+            button6.Text = "Next";
+            button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
+            // 
+            // button7
+            // 
+            button7.Location = new Point(665, 356);
+            button7.Name = "button7";
+            button7.Size = new Size(106, 44);
+            button7.TabIndex = 17;
+            button7.Text = "update task";
+            button7.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(28, 133);
+            label2.Name = "label2";
+            label2.Size = new Size(134, 15);
+            label2.TabIndex = 18;
+            label2.Text = "showing 0 out of 0 tasks";
+            // 
+            // button8
+            // 
+            button8.Location = new Point(665, 424);
+            button8.Name = "button8";
+            button8.Size = new Size(106, 46);
+            button8.TabIndex = 19;
+            button8.Text = "delete task";
+            button8.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            button9.Location = new Point(665, 490);
+            button9.Name = "button9";
+            button9.Size = new Size(106, 39);
+            button9.TabIndex = 20;
+            button9.Text = "show overdue tasks";
+            button9.UseVisualStyleBackColor = true;
+            // 
+            // button10
+            // 
+            button10.Location = new Point(665, 544);
+            button10.Name = "button10";
+            button10.Size = new Size(106, 41);
+            button10.TabIndex = 21;
+            button10.Text = "generate task report";
+            button10.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 617);
+            Controls.Add(button10);
+            Controls.Add(button9);
+            Controls.Add(button8);
+            Controls.Add(label2);
+            Controls.Add(button7);
+            Controls.Add(button6);
+            Controls.Add(button5);
+            Controls.Add(button4);
+            Controls.Add(textBox1);
             Controls.Add(radioButton5);
             Controls.Add(button3);
             Controls.Add(comboBox1);
@@ -193,5 +294,14 @@
         private ComboBox comboBox1;
         private Button button3;
         private RadioButton radioButton5;
+        private TextBox textBox1;
+        private Button button4;
+        private Button button5;
+        private Button button6;
+        private Button button7;
+        private Label label2;
+        private Button button8;
+        private Button button9;
+        private Button button10;
     }
 }
