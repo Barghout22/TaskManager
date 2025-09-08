@@ -38,6 +38,7 @@
             button2 = new Button();
             comboBox1 = new ComboBox();
             button3 = new Button();
+            radioButton5 = new RadioButton();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -144,11 +145,24 @@
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
+            // radioButton5
+            // 
+            radioButton5.AutoSize = true;
+            radioButton5.Location = new Point(402, 41);
+            radioButton5.Name = "radioButton5";
+            radioButton5.Size = new Size(99, 19);
+            radioButton5.TabIndex = 11;
+            radioButton5.TabStop = true;
+            radioButton5.Text = "sort by priorty";
+            radioButton5.UseVisualStyleBackColor = true;
+            radioButton5.CheckedChanged += radioButton5_CheckedChanged;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(radioButton5);
             Controls.Add(button3);
             Controls.Add(comboBox1);
             Controls.Add(button2);
@@ -178,5 +192,6 @@
         private Button button2;
         private ComboBox comboBox1;
         private Button button3;
+        private RadioButton radioButton5;
     }
 }

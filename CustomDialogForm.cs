@@ -23,10 +23,10 @@ namespace TaskManager
         public string TaskCategory { get; set; }
         public int UserIdent { get; set; }
 
-        public CustomDialogForm(User user)
+        public CustomDialogForm(int userId)
         {
             InitializeComponent();
-            UserIdent = user.Id;
+            UserIdent = userId;
 
             comboBox2.Items.Add("Pending");
             comboBox2.Items.Add("In Progress");
@@ -77,7 +77,7 @@ namespace TaskManager
         {
             if (string.IsNullOrWhiteSpace(taskTitle) || string.IsNullOrWhiteSpace(taskBody)
                 || string.IsNullOrWhiteSpace(TaskCategory)
-                || string.IsNullOrWhiteSpace(TaskPriorty) || taskStatus == 0 || taskDueDate == DateTime.Now.Date)
+                || string.IsNullOrWhiteSpace(TaskPriorty) || taskStatus ==Status.Undefined || taskDueDate == DateTime.Now.Date)
             {
                 MessageBox.Show("please make sure to fill out all the required fields to create a new task");
 

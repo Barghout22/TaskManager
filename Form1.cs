@@ -11,8 +11,7 @@ namespace TaskManager
         public Form1()
         {
             InitializeComponent();
-            var tasks = context.TaskItems.OrderBy(task => task.DueDate).ToList();
-            dataGridView1.DataSource = tasks;
+
             var users = context.Users.ToList();
             if (users.Count() == 0) comboBox1.Text = "no users to show";
             else
@@ -26,7 +25,10 @@ namespace TaskManager
                 }
                 comboBox1.Text = users[0].Email;
                 comboBox1.SelectedText = users[0].Email;
-               
+                var tasks = context.TaskItems.Where(task => task.Usr.Email == comboBox1.Text)
+                    .OrderBy(task => task.DueDate).Select(task => new { task.Id, task.Title, task.Description, task.Categ.Name, task.Status, task.Priority, task.DueDate }).ToList();
+                dataGridView1.DataSource = tasks;
+
             }
         }
 
@@ -41,10 +43,13 @@ namespace TaskManager
             else if (catCount == 0) MessageBox.Show("You must add some categories before you can add tasks");
             else
             {
-                var currentUser = context.Users.FirstOrDefault(user => user.Email == comboBox1.Text);
-                AddForm = new CustomDialogForm(currentUser);
+                var currentUserId = context.Users.FirstOrDefault(user => user.Email == comboBox1.Text).Id;
+                AddForm = new CustomDialogForm(currentUserId);
                 AddForm.ShowDialog();
-                if (AddForm.DialogResult == DialogResult.Cancel) AddForm.Close();
+                var tasks = context.TaskItems.Where(task => task.Usr.Email == comboBox1.Text)
+                    .OrderBy(task => task.DueDate)
+                    .Select(task => new { task.Id, task.Title, task.Description, task.Categ.Name, task.Status, task.Priority, task.DueDate }).ToList();
+                dataGridView1.DataSource = tasks;
             }
 
         }
@@ -53,8 +58,9 @@ namespace TaskManager
         {
             if (comboBox1.SelectedText != "no users to show")
             {
-                var tasks = context.TaskItems.Where(task => task.Usr.Email == comboBox1.SelectedText)
-                    .OrderBy(task => task.DueDate).ToList();
+                var tasks = context.TaskItems.Where(task => task.Usr.Email == comboBox1.Text)
+                    .OrderBy(task => task.DueDate)
+                    .Select(task => new { task.Id, task.Title, task.Description, task.Categ.Name, task.Status, task.Priority, task.DueDate }).ToList();
                 dataGridView1.DataSource = tasks;
             }
 
@@ -64,9 +70,9 @@ namespace TaskManager
             if (comboBox1.SelectedText != "no users to show")
             {
                 var tasks = context.TaskItems
-              .Where(task => task.Status == Status.Pending && task.Usr.Email == comboBox1.SelectedText)
-              .OrderBy(task => task.DueDate).ThenBy(task => task.Priority)
-              .ToList();
+              .Where(task => task.Status == Status.Pending && task.Usr.Email == comboBox1.Text)
+              .OrderBy(task => task.DueDate)
+             .Select(task => new { task.Id, task.Title, task.Description, task.Categ.Name, task.Priority, task.DueDate }).ToList();
                 dataGridView1.DataSource = tasks;
 
             }
@@ -78,9 +84,10 @@ namespace TaskManager
             if (comboBox1.SelectedText != "no users to show")
             {
                 var tasks = context.TaskItems
-              .Where(task => task.Status == Status.InProgress && task.Usr.Email == comboBox1.SelectedText)
+              .Where(task => task.Status == Status.InProgress && task.Usr.Email == comboBox1.Text)
               .OrderBy(task => task.DueDate).ThenBy(task => task.Priority)
-              .ToList();
+              .Select(task => new { task.Id, task.Title, task.Description, task.Categ.Name, task.Priority, task.DueDate }).ToList();
+            
                 dataGridView1.DataSource = tasks;
             }
 
@@ -91,25 +98,47 @@ namespace TaskManager
             if (comboBox1.SelectedText != "no users to show")
             {
                 var tasks = context.TaskItems
-             .Where(task => task.Status == Status.Completed && task.Usr.Email == comboBox1.SelectedText)
-             .OrderBy(task => task.DueDate).ThenBy(task => task.Priority)
-             .ToList();
+             .Where(task => task.Status == Status.Completed && task.Usr.Email == comboBox1.Text)
+             .OrderBy(task => task.DueDate)
+             .Select(task => new { task.Id, task.Title, task.Description, task.Categ.Name, task.Priority, task.DueDate }).ToList();
                 dataGridView1.DataSource = tasks;
             }
+        }
+        private void radioButton5_CheckedChanged(object sender, EventArgs e)
+        {
+            var tasks = context.TaskItems
+           .Where(task => task.Usr.Email == comboBox1.Text)
+           .OrderBy(task => task.Priority).ThenBy(task => task.DueDate)
+           .Select(task => new { task.Id, task.Title, task.Description, task.Categ.Name, task.Status, task.DueDate }).ToList();
+            dataGridView1.DataSource = tasks;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var tasks = context.TaskItems
+             .Where(task => task.Usr.Email == comboBox1.Text)
+             .OrderBy(task => task.DueDate)
+             .Select(task => new { task.Id, task.Title, task.Description, task.Categ.Name, task.Status, task.Priority, task.DueDate }).ToList();
+            dataGridView1.DataSource = tasks;
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             UserForm.ShowDialog();
+            if (UserForm.DialogResult == DialogResult.OK)
+            {
+                var newUser = context.Users.Last();
+                comboBox1.Items.Add(newUser.Email);
+
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             CatForm.ShowDialog();
         }
+
+
     }
 }

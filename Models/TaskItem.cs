@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskManager.Models
 {
-    public enum Status { Pending,InProgress,Completed}
+    public enum Status {Undefined, Pending,InProgress,Completed}
     public class TaskItem
     {
         public int Id { get; set; }
