@@ -123,6 +123,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(211, 23);
             textBox1.TabIndex = 8;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // richTextBox1
             // 
@@ -142,6 +143,7 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Low", "Medium", "High" });
             comboBox1.Location = new Point(319, 116);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(200, 23);
