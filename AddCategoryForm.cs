@@ -35,6 +35,7 @@ namespace TaskManager
             else {
                 var cats = context.Categories.Add(new Category { Name = CatName });
                 context.SaveChanges();
+                MessageBox.Show("category added successfully");
                 this.DialogResult = DialogResult.OK;
                 this.Close();
 

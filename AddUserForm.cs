@@ -40,6 +40,7 @@ namespace TaskManager
             else {
                 var users = context.Users.Add(new User() { Name = NewName, Email = NewEmail });
                 context.SaveChanges();
+                MessageBox.Show("user added successfully");
                 this.DialogResult = DialogResult.OK;
                 this.Close();
 
