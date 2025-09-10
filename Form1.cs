@@ -146,26 +146,27 @@ namespace TaskManager
 
         private void button6_Click(object sender, EventArgs e)
         {
-            pageNum++;
-
-
             var tasks = context.TaskItems.Where(task => task.Usr.Email == comboBox1.Text)
                    .OrderBy(task => task.DueDate).Select(task => new { task.Id, task.Title, task.Description, task.Categ.Name, task.Status, task.Priority, task.DueDate });
-
-            if (pageNum * pageSize < tasks.ToList().Count)
+            var pageNumPlaceholer = pageNum + 1;
+            if (pageNumPlaceholer * pageSize <= tasks.ToList().Count)
             {
+                pageNum= pageNumPlaceholer;
                 button5.Enabled = true;
                 label2.Text = $"showing {pageNum * pageSize} out of {tasks.ToList().Count} tasks";
 
                 dataGridView1.DataSource = tasks.Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
 
             }
-            else if (pageNum * pageSize - tasks.ToList().Count < pageSize)
+            else if (pageNumPlaceholer * pageSize - tasks.ToList().Count < pageSize)
             {
+ 
                 button5.Enabled = true;
-                label2.Text = $"showing {tasks.ToList().Count - (pageNum - 1) * pageSize} out of {tasks.ToList().Count} tasks";
+                label2.Text = $"showing {tasks.ToList().Count - (pageNumPlaceholer - 1) * pageSize} out of {tasks.ToList().Count} tasks";
 
-                dataGridView1.DataSource = tasks.Skip((pageNum - 1) * pageSize).Take(tasks.ToList().Count - (pageNum - 1) * pageSize).ToList();
+                dataGridView1.DataSource = tasks.Skip((pageNumPlaceholer - 1) * pageSize).Take(tasks.ToList().Count - (pageNumPlaceholer - 1) * pageSize).ToList();
+
+                pageNum = pageNumPlaceholer;
             }
 
         }
