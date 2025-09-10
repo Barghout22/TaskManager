@@ -86,6 +86,7 @@
             button1.TabIndex = 4;
             button1.Text = "update";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // button2
             // 
@@ -147,7 +148,7 @@
             // 
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(327, 321);
+            comboBox1.Location = new Point(327, 134);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(200, 23);
             comboBox1.TabIndex = 11;
@@ -156,7 +157,7 @@
             // 
             comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(327, 223);
+            comboBox2.Location = new Point(327, 213);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(200, 23);
             comboBox2.TabIndex = 12;
@@ -165,7 +166,7 @@
             // 
             comboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(327, 150);
+            comboBox3.Location = new Point(327, 292);
             comboBox3.Name = "comboBox3";
             comboBox3.Size = new Size(200, 23);
             comboBox3.TabIndex = 13;

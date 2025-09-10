@@ -209,8 +209,18 @@ namespace TaskManager
             int.TryParse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(),out int taskId);
             updateForm = new updateForm(taskId);
             updateForm.ShowDialog();
-            radioButton1.Select();
-            
+           
+            if (radioButton1.Checked)
+            {
+                var tasks = context.TaskItems.Where(task => task.Usr.Email == comboBox1.Text)
+                   .OrderBy(task => task.DueDate)
+                   .Select(task => new { task.Id, task.Title, task.Description, task.Categ.Name, task.Status, task.Priority, task.DueDate }).ToList();
+                dataGridView1.DataSource = dataGridView1.DataSource = tasks.Skip((pageNum - 1) * pageSize).Take(pageSize).ToList(); ;
+                label2.Text = $"showing {pageNum * pageSize} out of {tasks.ToList().Count} tasks";
+            }
+            else radioButton1.Select();
+
+
 
         }
 
