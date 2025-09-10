@@ -5,10 +5,11 @@ namespace TaskManager
 {
     public partial class Form1 : Form
     {
-        new CustomDialogForm AddForm;
+         CustomDialogForm AddForm;
         TaskManagerContext context = new TaskManagerContext();
-        new AddUserForm UserForm = new AddUserForm();
-        new AddCategoryForm CatForm = new AddCategoryForm();
+         AddUserForm UserForm = new AddUserForm();
+        AddCategoryForm CatForm = new AddCategoryForm();
+        updateForm updateForm;
         int pageNum = 1;
         int pageSize = 5;
         public Form1()
@@ -63,10 +64,13 @@ namespace TaskManager
         {
             if (comboBox1.SelectedText != "no users to show")
             {
+                button6.Enabled = true;
+
                 var tasks = context.TaskItems.Where(task => task.Usr.Email == comboBox1.Text)
                     .OrderBy(task => task.DueDate)
                     .Select(task => new { task.Id, task.Title, task.Description, task.Categ.Name, task.Status, task.Priority, task.DueDate }).ToList();
-                dataGridView1.DataSource = tasks;
+                dataGridView1.DataSource = dataGridView1.DataSource = tasks.Skip((pageNum - 1) * pageSize).Take(pageSize).ToList(); ;
+                label2.Text = $"showing {pageNum * pageSize} out of {tasks.ToList().Count} tasks";
             }
 
         }
@@ -74,6 +78,9 @@ namespace TaskManager
         {
             if (comboBox1.SelectedText != "no users to show")
             {
+                button5.Enabled = false;
+                button6.Enabled = false;
+                label2.Text = "showing all pending tasks";
                 var tasks = context.TaskItems
               .Where(task => task.Status == Status.Pending && task.Usr.Email == comboBox1.Text)
               .OrderBy(task => task.DueDate)
@@ -88,6 +95,9 @@ namespace TaskManager
         {
             if (comboBox1.SelectedText != "no users to show")
             {
+                button5.Enabled = false;
+                button6.Enabled = false;
+                label2.Text = "showing all In progress tasks";
                 var tasks = context.TaskItems
               .Where(task => task.Status == Status.InProgress && task.Usr.Email == comboBox1.Text)
               .OrderBy(task => task.DueDate).ThenBy(task => task.Priority)
@@ -102,6 +112,9 @@ namespace TaskManager
         {
             if (comboBox1.SelectedText != "no users to show")
             {
+                button5.Enabled = false;
+                button6.Enabled = false;
+                label2.Text = "showing all Completed tasks";
                 var tasks = context.TaskItems
              .Where(task => task.Status == Status.Completed && task.Usr.Email == comboBox1.Text)
              .OrderBy(task => task.DueDate)
@@ -111,11 +124,13 @@ namespace TaskManager
         }
         private void radioButton5_CheckedChanged(object sender, EventArgs e)
         {
+            button6.Enabled = true;
             var tasks = context.TaskItems
            .Where(task => task.Usr.Email == comboBox1.Text)
            .OrderBy(task => task.Priority).ThenBy(task => task.DueDate)
            .Select(task => new { task.Id, task.Title, task.Description, task.Categ.Name, task.Status, task.DueDate }).ToList();
-            dataGridView1.DataSource = tasks;
+            dataGridView1.DataSource = dataGridView1.DataSource = tasks.Skip((pageNum - 1) * pageSize).Take(pageSize).ToList(); ;
+            label2.Text = $"showing {pageNum * pageSize} out of {tasks.ToList().Count} tasks";
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -151,7 +166,7 @@ namespace TaskManager
             var pageNumPlaceholer = pageNum + 1;
             if (pageNumPlaceholer * pageSize <= tasks.ToList().Count)
             {
-                pageNum= pageNumPlaceholer;
+                pageNum = pageNumPlaceholer;
                 button5.Enabled = true;
                 label2.Text = $"showing {pageNum * pageSize} out of {tasks.ToList().Count} tasks";
 
@@ -160,9 +175,9 @@ namespace TaskManager
             }
             else if (pageNumPlaceholer * pageSize - tasks.ToList().Count < pageSize)
             {
- 
+
                 button5.Enabled = true;
-                label2.Text = $"showing {tasks.ToList().Count - (pageNumPlaceholer - 1) * pageSize} out of {tasks.ToList().Count} tasks";
+                label2.Text = $"showing {tasks.ToList().Count} out of {tasks.ToList().Count} tasks";
 
                 dataGridView1.DataSource = tasks.Skip((pageNumPlaceholer - 1) * pageSize).Take(tasks.ToList().Count - (pageNumPlaceholer - 1) * pageSize).ToList();
 
@@ -175,7 +190,7 @@ namespace TaskManager
         {
             var tasks = context.TaskItems.Where(task => task.Usr.Email == comboBox1.Text)
                   .OrderBy(task => task.DueDate).Select(task => new { task.Id, task.Title, task.Description, task.Categ.Name, task.Status, task.Priority, task.DueDate });
-           
+
 
 
             if (pageNum > 1)
@@ -188,5 +203,31 @@ namespace TaskManager
             }
             if (pageNum == 1) button5.Enabled = false;
         }
+
+        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int.TryParse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(),out int taskId);
+            updateForm = new updateForm(taskId);
+            updateForm.ShowDialog();
+            radioButton1.Select();
+            
+
+        }
+
+        private void radioButton6_CheckedChanged(object sender, EventArgs e)
+        {
+
+            var tasks = context.TaskItems.Where(task => task.DueDate < DateTime.Now).Select(task => new { task.Id, task.Title, task.Description, task.Categ.Name, task.Status, task.Priority, task.DueDate }).ToList();
+            dataGridView1.DataSource = tasks;
+            label2.Text = "showing overdue tasks";
+
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+           // chartForm.ShowDialog();
+        }
+
+
     }
 }

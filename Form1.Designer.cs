@@ -43,11 +43,10 @@
             button4 = new Button();
             button5 = new Button();
             button6 = new Button();
-            button7 = new Button();
             label2 = new Label();
-            button8 = new Button();
-            button9 = new Button();
             button10 = new Button();
+            radioButton6 = new RadioButton();
+            colorDialog1 = new ColorDialog();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -58,6 +57,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(612, 372);
             dataGridView1.TabIndex = 0;
+            dataGridView1.CellContentDoubleClick += dataGridView1_CellContentDoubleClick;
             // 
             // button1
             // 
@@ -118,7 +118,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(665, 41);
+            label1.Location = new Point(650, 80);
             label1.Name = "label1";
             label1.Size = new Size(70, 15);
             label1.TabIndex = 6;
@@ -138,7 +138,7 @@
             // 
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(665, 62);
+            comboBox1.Location = new Point(650, 107);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(121, 23);
             comboBox1.TabIndex = 9;
@@ -204,15 +204,6 @@
             button6.UseVisualStyleBackColor = true;
             button6.Click += button6_Click;
             // 
-            // button7
-            // 
-            button7.Location = new Point(665, 356);
-            button7.Name = "button7";
-            button7.Size = new Size(106, 44);
-            button7.TabIndex = 17;
-            button7.Text = "update task";
-            button7.UseVisualStyleBackColor = true;
-            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -222,43 +213,36 @@
             label2.TabIndex = 18;
             label2.Text = "showing 0 out of 0 tasks";
             // 
-            // button8
-            // 
-            button8.Location = new Point(665, 424);
-            button8.Name = "button8";
-            button8.Size = new Size(106, 46);
-            button8.TabIndex = 19;
-            button8.Text = "delete task";
-            button8.UseVisualStyleBackColor = true;
-            // 
-            // button9
-            // 
-            button9.Location = new Point(665, 490);
-            button9.Name = "button9";
-            button9.Size = new Size(106, 39);
-            button9.TabIndex = 20;
-            button9.Text = "show overdue tasks";
-            button9.UseVisualStyleBackColor = true;
-            // 
             // button10
             // 
-            button10.Location = new Point(665, 544);
+            button10.Location = new Point(665, 357);
             button10.Name = "button10";
             button10.Size = new Size(106, 41);
             button10.TabIndex = 21;
             button10.Text = "generate task report";
             button10.UseVisualStyleBackColor = true;
+            button10.Click += button10_Click;
+            // 
+            // radioButton6
+            // 
+            radioButton6.AutoSize = true;
+            radioButton6.Location = new Point(621, 45);
+            radioButton6.Name = "radioButton6";
+            radioButton6.Size = new Size(128, 19);
+            radioButton6.TabIndex = 22;
+            radioButton6.TabStop = true;
+            radioButton6.Text = "show overdue tasks";
+            radioButton6.UseVisualStyleBackColor = true;
+            radioButton6.CheckedChanged += radioButton6_CheckedChanged;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 617);
+            Controls.Add(radioButton6);
             Controls.Add(button10);
-            Controls.Add(button9);
-            Controls.Add(button8);
             Controls.Add(label2);
-            Controls.Add(button7);
             Controls.Add(button6);
             Controls.Add(button5);
             Controls.Add(button4);
@@ -298,10 +282,9 @@
         private Button button4;
         private Button button5;
         private Button button6;
-        private Button button7;
         private Label label2;
-        private Button button8;
-        private Button button9;
         private Button button10;
+        private RadioButton radioButton6;
+        private ColorDialog colorDialog1;
     }
 }
