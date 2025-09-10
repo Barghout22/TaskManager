@@ -40,7 +40,6 @@
             button3 = new Button();
             radioButton5 = new RadioButton();
             textBox1 = new TextBox();
-            button4 = new Button();
             button5 = new Button();
             button6 = new Button();
             label2 = new Label();
@@ -173,15 +172,7 @@
             textBox1.PlaceholderText = "search tasks by name/description";
             textBox1.Size = new Size(458, 23);
             textBox1.TabIndex = 12;
-            // 
-            // button4
-            // 
-            button4.Location = new Point(516, 89);
-            button4.Name = "button4";
-            button4.Size = new Size(89, 23);
-            button4.TabIndex = 13;
-            button4.Text = "Search";
-            button4.UseVisualStyleBackColor = true;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // button5
             // 
@@ -245,7 +236,6 @@
             Controls.Add(label2);
             Controls.Add(button6);
             Controls.Add(button5);
-            Controls.Add(button4);
             Controls.Add(textBox1);
             Controls.Add(radioButton5);
             Controls.Add(button3);
@@ -279,7 +269,6 @@
         private Button button3;
         private RadioButton radioButton5;
         private TextBox textBox1;
-        private Button button4;
         private Button button5;
         private Button button6;
         private Label label2;

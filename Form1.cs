@@ -5,9 +5,9 @@ namespace TaskManager
 {
     public partial class Form1 : Form
     {
-         CustomDialogForm AddForm;
+        CustomDialogForm AddForm;
         TaskManagerContext context = new TaskManagerContext();
-         AddUserForm UserForm = new AddUserForm();
+        AddUserForm UserForm = new AddUserForm();
         AddCategoryForm CatForm = new AddCategoryForm();
         updateForm updateForm;
         int pageNum = 1;
@@ -206,10 +206,10 @@ namespace TaskManager
 
         private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            int.TryParse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(),out int taskId);
+            int.TryParse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(), out int taskId);
             updateForm = new updateForm(taskId);
             updateForm.ShowDialog();
-           
+
             if (radioButton1.Checked)
             {
                 var tasks = context.TaskItems.Where(task => task.Usr.Email == comboBox1.Text)
@@ -227,7 +227,8 @@ namespace TaskManager
         private void radioButton6_CheckedChanged(object sender, EventArgs e)
         {
 
-            var tasks = context.TaskItems.Where(task => task.DueDate < DateTime.Now).Select(task => new { task.Id, task.Title, task.Description, task.Categ.Name, task.Status, task.Priority, task.DueDate }).ToList();
+            var tasks = context.TaskItems.Where(task => task.DueDate < DateTime.Now)
+                .Select(task => new { task.Id, task.Title, task.Description, task.Categ.Name, task.Status, task.Priority, task.DueDate }).ToList();
             dataGridView1.DataSource = tasks;
             label2.Text = "showing overdue tasks";
 
@@ -235,9 +236,15 @@ namespace TaskManager
 
         private void button10_Click(object sender, EventArgs e)
         {
-           // chartForm.ShowDialog();
+            // chartForm.ShowDialog();
         }
 
-
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            var tasks = context.TaskItems.Where(t => t.Title.Contains(textBox1.Text) || t.Description.Contains(textBox1.Text))
+                .Select(task => new { task.Id, task.Title, task.Description, 
+                    task.Categ.Name, task.Status, task.Priority, task.DueDate }).ToList();
+            dataGridView1.DataSource = tasks;
+        }
     }
 }
