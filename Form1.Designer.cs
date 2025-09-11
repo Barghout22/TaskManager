@@ -47,6 +47,7 @@
             radioButton6 = new RadioButton();
             colorDialog1 = new ColorDialog();
             label3 = new Label();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -55,13 +56,13 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(12, 157);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(664, 372);
+            dataGridView1.Size = new Size(744, 372);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellContentDoubleClick += dataGridView1_CellContentDoubleClick;
             // 
             // button1
             // 
-            button1.Location = new Point(682, 257);
+            button1.Location = new Point(762, 257);
             button1.Name = "button1";
             button1.Size = new Size(106, 43);
             button1.TabIndex = 1;
@@ -73,7 +74,7 @@
             // 
             radioButton1.AutoSize = true;
             radioButton1.Checked = true;
-            radioButton1.Location = new Point(29, 41);
+            radioButton1.Location = new Point(12, 12);
             radioButton1.Name = "radioButton1";
             radioButton1.Size = new Size(68, 19);
             radioButton1.TabIndex = 2;
@@ -85,7 +86,7 @@
             // radioButton2
             // 
             radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(103, 41);
+            radioButton2.Location = new Point(106, 12);
             radioButton2.Name = "radioButton2";
             radioButton2.Size = new Size(69, 19);
             radioButton2.TabIndex = 3;
@@ -96,7 +97,7 @@
             // radioButton3
             // 
             radioButton3.AutoSize = true;
-            radioButton3.Location = new Point(178, 41);
+            radioButton3.Location = new Point(193, 12);
             radioButton3.Name = "radioButton3";
             radioButton3.Size = new Size(83, 19);
             radioButton3.TabIndex = 4;
@@ -107,7 +108,7 @@
             // radioButton4
             // 
             radioButton4.AutoSize = true;
-            radioButton4.Location = new Point(267, 41);
+            radioButton4.Location = new Point(293, 12);
             radioButton4.Name = "radioButton4";
             radioButton4.Size = new Size(115, 19);
             radioButton4.TabIndex = 5;
@@ -118,7 +119,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(570, 89);
+            label1.Location = new Point(747, 71);
             label1.Name = "label1";
             label1.Size = new Size(70, 15);
             label1.TabIndex = 6;
@@ -126,7 +127,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(682, 157);
+            button2.Location = new Point(762, 157);
             button2.Name = "button2";
             button2.Size = new Size(106, 46);
             button2.TabIndex = 8;
@@ -138,7 +139,7 @@
             // 
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(650, 89);
+            comboBox1.Location = new Point(747, 89);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(121, 23);
             comboBox1.TabIndex = 9;
@@ -146,7 +147,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(682, 209);
+            button3.Location = new Point(762, 209);
             button3.Name = "button3";
             button3.Size = new Size(106, 42);
             button3.TabIndex = 10;
@@ -157,7 +158,7 @@
             // radioButton5
             // 
             radioButton5.AutoSize = true;
-            radioButton5.Location = new Point(388, 41);
+            radioButton5.Location = new Point(428, 12);
             radioButton5.Name = "radioButton5";
             radioButton5.Size = new Size(99, 19);
             radioButton5.TabIndex = 11;
@@ -206,7 +207,7 @@
             // 
             // button10
             // 
-            button10.Location = new Point(682, 306);
+            button10.Location = new Point(762, 306);
             button10.Name = "button10";
             button10.Size = new Size(106, 41);
             button10.TabIndex = 21;
@@ -217,7 +218,7 @@
             // radioButton6
             // 
             radioButton6.AutoSize = true;
-            radioButton6.Location = new Point(493, 41);
+            radioButton6.Location = new Point(548, 12);
             radioButton6.Name = "radioButton6";
             radioButton6.Size = new Size(128, 19);
             radioButton6.TabIndex = 22;
@@ -228,17 +229,27 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(638, 45);
+            label3.Location = new Point(731, 14);
             label3.Name = "label3";
             label3.Size = new Size(38, 15);
             label3.TabIndex = 23;
             label3.Text = "label3";
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(571, 139);
+            label4.Name = "label4";
+            label4.Size = new Size(185, 15);
+            label4.TabIndex = 24;
+            label4.Text = "double click on tasks to edit them";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 617);
+            ClientSize = new Size(880, 617);
+            Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(radioButton6);
             Controls.Add(button10);
@@ -285,5 +296,6 @@
         private RadioButton radioButton6;
         private ColorDialog colorDialog1;
         private Label label3;
+        private Label label4;
     }
 }

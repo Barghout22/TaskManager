@@ -10,6 +10,7 @@ namespace TaskManager
         AddUserForm UserForm = new AddUserForm();
         AddCategoryForm CatForm = new AddCategoryForm();
         updateForm updateForm;
+        GenerateReportsForm generateReport = new GenerateReportsForm();
         int pageNum = 1;
         int pageSize = 5;
         public Form1()
@@ -35,7 +36,11 @@ namespace TaskManager
 
                 dataGridView1.DataSource = tasks.Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
                 int overDueTaskCount = tasks.Where(t => t.DueDate < DateTime.Now).Count();
-                if (overDueTaskCount == 0) label3.Text = "you have no overdue tasks";
+                if (overDueTaskCount == 0){
+
+                    label3.Text = "you have no overdue tasks";
+                    label3.ForeColor = Color.Black;
+                }
                 else
                 {
                     label3.Text = $"you have {overDueTaskCount} overdue tasks!";
@@ -217,6 +222,19 @@ namespace TaskManager
             updateForm = new updateForm(taskId);
             updateForm.ShowDialog();
 
+            int overDueTaskCount = context.TaskItems.Where(t => t.DueDate < DateTime.Now).Count();
+            if (overDueTaskCount == 0)
+            {
+
+                label3.Text = "you have no overdue tasks";
+                label3.ForeColor = Color.Black;
+            }
+            else
+            {
+                label3.Text = $"you have {overDueTaskCount} overdue tasks!";
+                label3.ForeColor = Color.DarkRed;
+            }
+
             if (radioButton1.Checked)
             {
                 var tasks = context.TaskItems.Where(task => task.Usr.Email == comboBox1.Text)
@@ -244,7 +262,7 @@ namespace TaskManager
 
         private void button10_Click(object sender, EventArgs e)
         {
-            // chartForm.ShowDialog();
+            generateReport.ShowDialog();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
