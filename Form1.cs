@@ -34,6 +34,13 @@ namespace TaskManager
                 label2.Text = $"showing {pageNum * pageSize} out of {tasks.ToList().Count} tasks";
 
                 dataGridView1.DataSource = tasks.Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
+                int overDueTaskCount = tasks.Where(t => t.DueDate < DateTime.Now).Count();
+                if (overDueTaskCount == 0) label3.Text = "you have no overdue tasks";
+                else
+                {
+                    label3.Text = $"you have {overDueTaskCount} overdue tasks!";
+                    label3.ForeColor =Color.DarkRed;
+                }
 
             }
         }
@@ -226,7 +233,8 @@ namespace TaskManager
 
         private void radioButton6_CheckedChanged(object sender, EventArgs e)
         {
-
+            button5.Enabled = false;
+            button6.Enabled = false;
             var tasks = context.TaskItems.Where(task => task.DueDate < DateTime.Now)
                 .Select(task => new { task.Id, task.Title, task.Description, task.Categ.Name, task.Status, task.Priority, task.DueDate }).ToList();
             dataGridView1.DataSource = tasks;
