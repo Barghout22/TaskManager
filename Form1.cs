@@ -158,13 +158,8 @@ namespace TaskManager
         private void button2_Click(object sender, EventArgs e)
         {
             UserForm.ShowDialog();
-            if (UserForm.DialogResult == DialogResult.OK)
-            {
-                var newUser = context.Users.Last();
-                comboBox1.Items.Add(newUser.Email);
-
-            }
-        }
+            if (UserForm.DialogResult == DialogResult.OK)  comboBox1.Items.Add(UserForm.NewEmail);
+         }
 
         private void button3_Click(object sender, EventArgs e)
         {
